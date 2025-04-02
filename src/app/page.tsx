@@ -1,103 +1,168 @@
-import Image from "next/image";
+'use client'
+
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-[#5D8664] text-white pb-8">
+      
+      {/* HERO */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="w-full h-screen flex items-center justify-center px-6 md:px-16"
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-16 max-w-7xl w-full">
+          
+          {/* Tekst */}
+          <div className="max-w-md">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              ADHD-portalen
+            </h1>
+            <p className="text-lg mb-6">
+              Kurs, podcast, forum og personlig oppfølging – alt på ett sted, for deg som lever med eller rundt ADHD.
+            </p>
+            <Link
+              href="/kurs"
+              className="inline-block bg-white text-[#5D8664] font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition"
+            >
+              Kom i gang
+            </Link>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+          {/* Bilde + vertikal meny */}
+          <div className="relative">
+            <img
+              src="/heroo.png"
+              alt="ADHD Coach"
+              className="max-h-[80vh] w-auto"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="absolute top-1/2 -translate-y-1/2 right-[-180px] hidden lg:flex flex-col gap-4">
+              {[
+                { title: 'Kurs', href: '/kurs' },
+                { title: 'Podcast', href: '/podcast' },
+                { title: 'Forum', href: '/forum' },
+                { title: 'Min Side', href: '/min-side' },
+              ].map((item, idx) => (
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="bg-white text-[#5D8664] font-semibold py-3 px-6 rounded-xl shadow hover:scale-105 hover:bg-gray-50 transition text-center w-48"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      </motion.section>
+
+      {/* GRATIS DAGSPLANLEGGER */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-20 bg-white border border-blue-100 rounded-xl shadow-md p-6 mx-auto w-full max-w-xl text-center"
+      >
+        <h2 className="text-xl font-semibold text-blue-700 mb-2">
+          Få vår gratis dagsplanlegger 🧩
+        </h2>
+        <p className="text-gray-600 text-sm mb-4">
+          Et enkelt verktøy som gir deg bedre struktur i hverdagen.
+        </p>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/adhdplussplanlegger.png"
+          download
+          className="inline-block bg-blue-600 text-white text-sm py-2 px-5 rounded-full hover:bg-blue-700 transition"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          Last ned gratis dagsplanlegger
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </motion.div>
+
+      {/* GRID-MENY (fallback visning) */}
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 w-full max-w-5xl mx-auto lg:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        {[
+          { title: 'Kurs', href: '/kurs' },
+          { title: 'Podcast', href: '/podcast' },
+          { title: 'Forum', href: '/forum' },
+          { title: 'Min Side', href: '/min-side' },
+        ].map((item, idx) => (
+          <Link
+            key={idx}
+            href={item.href}
+            className="bg-white border border-gray-200 rounded-xl p-6 shadow hover:shadow-lg transition transform hover:-translate-y-1 text-center"
+          >
+            <p className="text-lg font-semibold text-blue-700">{item.title}</p>
+          </Link>
+        ))}
+      </motion.div>
+
+      {/* TESTIMONIAL */}
+      <motion.div
+        className="mt-24 max-w-3xl text-center mx-auto px-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Hva sier brukerne?
+        </h2>
+        <p className="text-gray-600 italic">
+          “Dette kurset hjalp meg å forstå meg selv bedre. Endelig en plass hvor jeg føler meg sett og forstått.”
+        </p>
+        <p className="text-gray-500 mt-2">– Anonym deltaker</p>
+      </motion.div>
+
+      {/* GRATIS RESSURSER */}
+      <section className="mt-20 w-full max-w-6xl mx-auto px-6 ">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-10">Gratis ressurser fra ADHD+</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-4 rounded-xl shadow text-center">
+            <img src="/dopamine-menu.png" alt="Dopamine Menu" className="w-full rounded mb-4" />
+            <h3 className="font-semibold text-gray-800">Dopamine Menu</h3>
+            <a
+              href="/DMS.pdf"
+              download
+              className="mt-3 inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-full hover:bg-blue-700 transition"
+            >
+              Last ned
+            </a>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl shadow text-center">
+            <img src="/emotional-toolkit.png" alt="Toolkit" className="w-full rounded mb-4" />
+            <h3 className="font-semibold text-gray-800">The Emotional Regulation Toolkit</h3>
+            <a
+              href="https://www.adhdpluss.no/the-emotional-regulation-toolkit"
+              className="mt-3 inline-block bg-yellow-400 text-black text-sm py-2 px-4 rounded-full hover:bg-yellow-500 transition"
+            >
+              Download your toolkit here
+            </a>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl shadow text-center">
+            <img src="/dopamine-vault.png" alt="Dopamine Vault" className="w-full rounded mb-4" />
+            <h3 className="font-semibold text-gray-800">The ADHD+ Dopamine Vault</h3>
+            <a
+              href="#"
+              className="mt-3 inline-block bg-yellow-400 text-black text-sm py-2 px-4 rounded-full hover:bg-yellow-500 transition"
+            >
+              Get your free dopamine vault!
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      
+    </main>
+  )
 }
